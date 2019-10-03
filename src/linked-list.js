@@ -14,12 +14,12 @@ class LinkedList {
 
         if (!this._head) {
             this._head = node;
-            this._tail = node;
+        } else {
+            this._tail.next = node;
+            node.prev = this._tail.data;
         }
-        this._tail.next = data;
-        node.prev = this._tail.data;
         this._tail = node;
-        console.log(node);
+        // console.log(node, 'tail: ', this._tail);
         return this;
     }
 
@@ -37,7 +37,16 @@ class LinkedList {
         return this._tail.data;
     }
 
-    at(index) {}
+    at(index) {
+        let current = this._head;
+        let i = 0;
+
+        while(i < index) {
+            current = current.next;
+            i ++;
+        }
+        return current.data;
+    }
 
     insertAt(index, data) {}
 
